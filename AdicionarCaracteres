@@ -1,0 +1,30 @@
+## Criei esse script para adicionar caracteres que são reconhecidas pelo banco de dados,pois eu recebo arquivos sem esses caracteres
+## e acaba sendo trabalhoso colocar nas linhas
+#Feito por Felipe Feitosa#
+x=[]
+j=0
+#Abrindo o arquivo e inserindo as linhas em uma lista com os delimitadores na linha 16#
+with open('danfes.txt') as danfes:
+        for i in danfes:
+            #o rstrip serve para remover a quebra de linha do arquivo#
+            m = i.rstrip('\n')
+            x.append("'"+m+"'"+","+"\n")
+        
+danfes.close
+######
+count= len(x)
+######
+#Inserindo a lista que carreguei anteriormente em um arquivo txt#
+arquivo = open('novoarquivo.txt','w')
+for m in x:
+    j=j+1
+            #if para remover a "," da ultima linha#
+    if j == (count-1):
+        p=m.replace(",","")
+        print(p)
+        arquivo.writelines(p)
+        print("ok")
+        break
+    arquivo.writelines(m)
+    
+arquivo.close
